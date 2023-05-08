@@ -1,0 +1,46 @@
+package com.example.listt.controller;
+
+import com.example.listt.entity.Category;
+import com.example.listt.repository.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+import java.util.List;
+
+@Controller
+public class CategoryController {
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    @GetMapping("/categories")
+    public String categories(ModelMap modelMap) {
+        List<Category> all = categoryRepository.findAll();
+        modelMap.addAttribute("categories", all);
+        return "categories";
+    }
+
+    @GetMapping("/categories/add")
+    public String categoryAddPage() {
+        return "addCategory";
+    }
+
+    @PostMapping("/categories/add")
+    public String categoryAdd(@RequestParam(name = "name") String name) {
+        Category category = new Category();
+        category.setName(name);
+        categoryRepository.save(category);
+        return "redirect:/categories";
+    }
+
+    @GetMapping("/categories/remove")
+    public String removeCategory(@RequestParam(name = "id") int id) {
+        categoryRepository.deleteById(id);
+        return "redirect:/categories";
+    }
+
+}
