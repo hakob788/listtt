@@ -16,6 +16,7 @@ import java.util.Optional;
 
 @Controller
 public class ItemsController {
+
     @Autowired
     private ItemRepository itemRepository;
     @Autowired
@@ -39,8 +40,9 @@ public class ItemsController {
             modelMap.addAttribute("item", item);
             modelMap.addAttribute("comments", allByItem);
             return "singleItem";
-        } else
+        } else {
             return "redirect:/items";
+        }
     }
 
     @GetMapping("/items/add")
@@ -61,5 +63,4 @@ public class ItemsController {
         itemRepository.deleteById(id);
         return "redirect:/items";
     }
-
 }

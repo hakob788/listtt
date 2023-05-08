@@ -12,8 +12,8 @@
 <h2>Comments</h2>
 <span th:if="${comments != null}">
     <span th:each="userComment: ${comments}">
-        <span th:text="${userComment.comment}"></span><br>
-         <a th:href="@{/comments/remove(id=${userComment.id}, itemId= ${item.id})}">Remove</a>>
+        <span th:text="${userComment.comment}"></span>
+         <a th:href="@{/comments/remove(id=${userComment.id}, itemId= ${item.id})}">Remove</a>
     </span>
 </span><br>
 Add Comment
@@ -24,6 +24,5 @@ Add Comment
 </label>
     <input type="submit" value="add">
 </form>
-
 </body>
 </html>

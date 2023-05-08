@@ -28,9 +28,9 @@ public class CommentController {
 
     @GetMapping("/comments/remove")
     public String removeComment(@RequestParam(name = "id") int id,
-                                @RequestParam(name = "itemId") int itemId) {
+                                @RequestParam(name = "itemId") Item itemId) {
         commentRepository.deleteById(id);
-        return "redirect:/items/" + itemId;
-    }
+        return "redirect:/items/" + itemId.getId();
 
+    }
 }
