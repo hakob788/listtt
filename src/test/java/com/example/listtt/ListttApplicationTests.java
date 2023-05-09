@@ -9,5 +9,4 @@ class ListttApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }

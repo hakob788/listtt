@@ -12,7 +12,6 @@ public class Item {
     private int id;
     @Column(name = "title")
     private String title;
-
     private String description;
     @ManyToOne
     private Category category;
