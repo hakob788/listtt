@@ -29,14 +29,12 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/items")
 public class ItemController {
-
     @Autowired
     private ItemRepository itemRepository;
     @Autowired
     private CommentRepository commentRepository;
     @Autowired
     private CategoryRepository categoryRepository;
-
     @Value("${listam.upload.image.path}")
     private String imageUploadPath;
 

@@ -17,7 +17,6 @@ import java.io.IOException;
 
 @Controller
 public class MainController {
-
     @Value("${listam.upload.image.path}")
     private String imageUploadPath;
 
@@ -40,5 +39,4 @@ public class MainController {
         }
         return null;
     }
-
 }

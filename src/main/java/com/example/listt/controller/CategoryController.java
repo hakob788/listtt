@@ -25,11 +25,11 @@ public class CategoryController {
     }
 
     @GetMapping("/categories/add")
-    public String addCategoryPage(){
+    public String addCategoryPage() {
         return "addCategory";
     }
 
-    @PostMapping ("/categories/add")
+    @PostMapping("/categories/add")
     public String addCategory(@RequestParam("name") String name) {
         Category category = new Category();
         category.setName(name);
@@ -38,9 +38,8 @@ public class CategoryController {
     }
 
     @GetMapping("/categories/remove")
-    public String removeCategory(@RequestParam("id") int id){
+    public String removeCategory(@RequestParam("id") int id) {
         categoryRepository.deleteById(id);
         return "redirect:/categories";
     }
-
 }

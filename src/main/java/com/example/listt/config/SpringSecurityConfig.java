@@ -13,7 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SpringSecurityConfig {
-
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
@@ -23,7 +22,7 @@ public class SpringSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.GET,"/").permitAll()
+                .requestMatchers(HttpMethod.GET, "/").permitAll()
                 .requestMatchers("/user/register").permitAll()
                 .requestMatchers("/categories/remove").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
@@ -40,5 +39,4 @@ public class SpringSecurityConfig {
         authenticationProvider.setPasswordEncoder(passwordEncoder);
         return authenticationProvider;
     }
-
 }

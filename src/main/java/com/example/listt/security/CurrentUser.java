@@ -1,9 +1,7 @@
 package com.example.listt.security;
 
 import com.example.listt.entity.User;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-
 
 public class CurrentUser extends org.springframework.security.core.userdetails.User {
 
