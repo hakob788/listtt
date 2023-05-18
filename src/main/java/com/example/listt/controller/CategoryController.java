@@ -13,23 +13,24 @@ import java.util.List;
 
 @Controller
 public class CategoryController {
+
     @Autowired
     private CategoryRepository categoryRepository;
 
     @GetMapping("/categories")
-    public String categories(ModelMap modelMap) {
+    public String categoriesPage(ModelMap modelMap) {
         List<Category> all = categoryRepository.findAll();
         modelMap.addAttribute("categories", all);
         return "categories";
     }
 
     @GetMapping("/categories/add")
-    public String categoryAddPage() {
+    public String addCategoryPage(){
         return "addCategory";
     }
 
-    @PostMapping("/categories/add")
-    public String categoryAdd(@RequestParam(name = "name") String name) {
+    @PostMapping ("/categories/add")
+    public String addCategory(@RequestParam("name") String name) {
         Category category = new Category();
         category.setName(name);
         categoryRepository.save(category);
@@ -37,8 +38,9 @@ public class CategoryController {
     }
 
     @GetMapping("/categories/remove")
-    public String removeCategory(@RequestParam(name = "id") int id) {
+    public String removeCategory(@RequestParam("id") int id){
         categoryRepository.deleteById(id);
         return "redirect:/categories";
     }
+
 }

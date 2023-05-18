@@ -7,22 +7,20 @@
 <body>
 <a href="/items">Back</a>
 <h2 th:text="${item.title}"></h2>
+<img th:if="${item.getImgName() != null}" th:src="@{/getImage(imageName=${item.getImgName()})}" width="400"/>
 <p th:text="${item.description}"></p>
 <span th:if="${item.category != null}" th:text="${item.category.name}"></span>
-<h2>Comments</h2>
-<span th:if="${comments != null}">
-    <span th:each="userComment: ${comments}">
-        <span th:text="${userComment.comment}"></span>
-         <a th:href="@{/comments/remove(id=${userComment.id}, itemId= ${item.id})}">Remove</a>
-    </span>
-</span><br>
-Add Comment
-<form action="/comments/add" method="post">
-    <input type="hidden" name="item" th:value="${item.id}">
-    Comment: <label>
-    <input type="text" name="comment">
-</label>
+<form action="/items/comment/add" method="post">
+    <input type="hidden" name="item.id" th:value="${item.id}"/>
+    <label>
+        <textarea name="commentText"></textarea>
+    </label>
     <input type="submit" value="add">
 </form>
+<div th:each="comment : ${comments}">
+    Comment: <span th:text="${comment.commentText}"></span> <br>
+    Comment Author: <span th:text="${comment.user.name}"></span>
+    Date: <span th:text="${comment.commentDate}"></span>
+</div>
 </body>
 </html>
